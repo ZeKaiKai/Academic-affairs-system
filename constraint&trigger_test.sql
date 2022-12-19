@@ -23,12 +23,6 @@ INSERT INTO `student` VALUES ('990502010', '测试', '男', '1989-11-11', '13977
 SELECT Depar_number FROM Department WHERE Depar_id = '05'; 
 -- -- 检查插入后触发器有没有给新学生添加账户
 SELECT User_id,Password,Power FROM user WHERE User_id = '990502010';
--- -- 删除测试学生
-DELETE FROM Student WHERE Stu_id = '990502010';
--- -- 检查插入后触发器有没有更新人数
-SELECT Depar_number FROM Department WHERE Depar_id = '05'; 
--- -- 检查学生账户是否删除
--- -- SELECT User_id,Password,Power FROM user WHERE User_id = '990502010';
 
 
 -- StudentGrade Auto_score_avg AFTER INSERT TRIGGER
@@ -38,10 +32,6 @@ SELECT Score_avg FROM Student WHERE Stu_id = '000503001';
 INSERT INTO StudentGrade VALUES ('000503001', '0509', 66);
 -- -- 查看添加新成绩后触发器有没有修改学生的平均分
 SELECT Score_avg FROM Student WHERE Stu_id = '000503001';
--- -- 删除测试成绩
-DELETE FROM StudentGrade WHERE Stu_id = '000503001' and Course_id = '0509';
--- -- 查看添加新成绩后触发器有没有修改学生的平均分
-SELECT Score_avg FROM Student WHERE Stu_id = '000503001';
 
 
 -- Teacher Auto_create_Teacher_user AFTER INSERT TRIGGER
@@ -49,10 +39,6 @@ SELECT Score_avg FROM Student WHERE Stu_id = '000503001';
 INSERT INTO `teacher` VALUES ('0508', '测试老师', '男', '1978-11-12', '教授', '05', '18966665555', 50000);
 -- -- 检查触发器是否给该老师创建了账户
 SELECT User_id,Password,Power FROM user WHERE User_id = '0508';
--- -- 删除测试教师
-DELETE FROM Teacher WHERE Teac_id = '0508';
--- -- 检查触发器是否删除了该老师的账户
--- -- SELECT User_id,Password,Power FROM user WHERE User_id = '0508';
 
 
 -- Teacher Set_salary_min BEFORE UPDATE TRIGGER

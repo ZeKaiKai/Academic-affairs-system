@@ -1,0 +1,39 @@
+1、现在给5个实体添加了主键的聚集索引
+2、把Class中的Teac_id改为Director，Stu_id改为Monitor
+3、删除了Director和Monitor的多余连线
+4、删除了Department的Class_id
+5、添加Department的Phone CHECK  # check约束
+6、添加Department主键自增 01->99  # identity约束
+7、删除Course的Teac_id
+8、添加StudentGrade的Grade CHECK  # check约束
+
+12.16
+1、Deparment增加总人数Depar_number
+2、Teacher增加工资Salary
+3、Class增加总人数Class_number
+4、Student增加平均分Score_avg
+5、添加实体User，权限power，0--管理员，1--老师，2--学生
+
+12.17
+视图
+1、每个课程选课人数,
+2、每个课程第一的学生：Course_id, Course_name, max_grade
+3、每个班平均分第一的学生：Class_id, Class_name, max_grade
+4、学生全信息视图：Stu_id, Stu_name, Score_avg,Class_name,Director_name,Depar_name,
+5、教师全信息视图：Teac_id, Teac_name, Salary,Teac_sex, Birthday, TechPost, Depar_name
+
+触发器：
+6、Auto_score_avg：插入StudentGrade，同步修改学生平均分。                          
+7、Set_salary_min：Salary限制最低值（5000(当地公务员平均工资)+课时*30)
+8、Auto_create_Student_user：插入学生，自动在用户表中插入新用户，用户id为学生id，用户密码默认为123456，权限为2
+9、Auto_create_Teacher_user：插入老师，自动在用户表中插入新用户，用户id为学生id，用户密码默认为123456，权限为1
+10、Auto_change_num：插入Student，同步修改Class人数，Deparment人数。     
+
+
+12.18
+pdm生成sql脚本，以下是修改日志
+1、前面drop trigger的6行全部去掉，原因是与mysql标准不符
+2、set sql_mode ='STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION';  
+drop database school_ena; 解决了group by版本不兼容的问题
+3、CREATE DATABASE school_ena CHARACTER SET utf8; 万国码解决中文乱码问题
+
